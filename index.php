@@ -1,3 +1,4 @@
+<?php include 'koneksi.php'; ?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -11,23 +12,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Offset agar judul section tidak tertutup Navbar Fixed */
-        section {
-            scroll-margin-top: 85px;
-        }
-
-        /* Styling dasar menu navbar */
+        section { scroll-margin-top: 85px; }
         .navbar-dark .navbar-nav .nav-link {
             transition: all 0.3s ease-in-out;
             border-bottom: 2px solid transparent;
             position: relative;
         }
-
-        /* Menu yang aktif / di-hover */
         .navbar-dark .navbar-nav .nav-link.active,
         .navbar-dark .navbar-nav .nav-link:hover {
             color: #ffc107 !important;
@@ -285,69 +275,86 @@
     <!-- Dependency JS dipanggil dengan urutan yang benar -->
     <script src="assets/js/jquery-3.5.1.slim.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+<?php
+    // POIN 2: Persiapan data array dari database ke dalam format JS untuk Chart.js (Dinamis)
+    $querySkills = mysqli_query($conn, "SELECT * FROM skills");
+    $labels = [];
+    $data_percentage = [];
+    $bg_colors = [];
+    $border_colors = [];
+
+    while($row = mysqli_fetch_assoc($querySkills)) {
+        $labels[] = $row['skill_name'];
+        $data_percentage[] = $row['percentage'];
+        $bg_colors[] = $row['bg_color'];
+        $border_colors[] = $row['border_color'];
+    }
+    ?>
 
 <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // FIX: Memaksa halaman kembali ke atas dan membersihkan hash saat di-refresh
-            if (history.scrollRestoration) {
-                history.scrollRestoration = 'manual';
-            }
-            window.scrollTo(0, 0);
-            if (window.location.hash) {
-                window.location.hash = '';
+            // 1. Mencegah URL menumpuk & mengatur posisi saat refresh setelah kirim pesan
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('status')) {
+                const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.hash;
+                window.history.replaceState(null, null, cleanUrl);
             }
 
-            // 1. Inisialisasi Chart.js
+            // 2. Smooth Scroll khusus saat menu diklik (Menggantikan CSS scroll-behavior)
+            document.querySelectorAll('.navbar-nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.hash !== "") {
+                        e.preventDefault();
+                        const targetId = this.hash;
+                        const targetElement = document.querySelector(targetId);
+
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 85, // Menyesuaikan tinggi navbar
+                                behavior: 'smooth'
+                            });
+                            // Memperbarui URL tanpa memicu reload
+                            window.history.pushState(null, null, targetId);
+                        }
+                    }
+                });
+            });
+
+            // 3. Inisialisasi Chart.js
+            var chartLabels = <?= json_encode($labels); ?>;
+            var chartData = <?= json_encode($data_percentage); ?>;
+            var chartBgColors = <?= json_encode($bg_colors); ?>;
+            var chartBorderColors = <?= json_encode($border_colors); ?>;
+
             var ctx = document.getElementById('mechatronicsSkillChart').getContext('2d');
             var mechatronicsSkillChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Mechanical', 'Electronics', 'Programming'],
+                    labels: chartLabels,
                     datasets: [{
                         label: 'Tingkat Penguasaan (%)',
-                        data: [84, 94, 80],
-                        backgroundColor: [
-                            'rgba(0, 123, 255, 0.7)',
-                            'rgba(40, 167, 69, 0.7)',
-                            'rgba(255, 193, 7, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(0, 123, 255, 1)',
-                            'rgba(40, 167, 69, 1)',
-                            'rgba(255, 193, 7, 1)'
-                        ],
+                        data: chartData,
+                        backgroundColor: chartBgColors,
+                        borderColor: chartBorderColors,
                         borderWidth: 1
                     }]
                 },
                 options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    },
+                    scales: { y: { beginAtZero: true, max: 100 } },
                     responsive: true,
-                    plugins: {
-                        legend: { display: false }
-                    }
+                    plugins: { legend: { display: false } }
                 }
             });
 
-            // 2. Auto Active Navbar berdasarkan Scroll (Intersection Observer API)
+            // 4. Auto Active Navbar berdasarkan Scroll (Intersection Observer)
             const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
             const sections = document.querySelectorAll('section[id]');
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '-30% 0px -60% 0px',
-                threshold: 0
-            };
-
+            const observerOptions = { root: null, rootMargin: '-30% 0px -60% 0px', threshold: 0 };
+            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const currentId = entry.target.getAttribute('id');
-                        
                         navLinks.forEach(link => {
                             link.classList.remove('active');
                             if (link.getAttribute('href') === `#${currentId}`) {
@@ -357,10 +364,9 @@
                     }
                 });
             }, observerOptions);
-
+            
             sections.forEach(section => observer.observe(section));
         });
     </script>
 </body>
-
 </html>
