@@ -1,0 +1,48 @@
+.nav-link {
+    display: flex;
+    gap: 25px;
+    color: aliceblue;
+}
+
+nav a {
+    padding: 0 15px;
+    margin-left: 20px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #415a77 100%);
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+.card-custom {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 12px;
+}
+
+.card-custom:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .15) !important;
+}
+
+.section-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 4px;
+    background-color: #ffd059;
+    bottom: -10px;
+    left: 25%;
+    border-radius: 2px;
+}
