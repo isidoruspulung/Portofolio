@@ -286,8 +286,17 @@
     <script src="assets/js/jquery-3.5.1.slim.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 
-    <script>
+<script>
         document.addEventListener("DOMContentLoaded", function() {
+            // FIX: Memaksa halaman kembali ke atas dan membersihkan hash saat di-refresh
+            if (history.scrollRestoration) {
+                history.scrollRestoration = 'manual';
+            }
+            window.scrollTo(0, 0);
+            if (window.location.hash) {
+                window.location.hash = '';
+            }
+
             // 1. Inisialisasi Chart.js
             var ctx = document.getElementById('mechatronicsSkillChart').getContext('2d');
             var mechatronicsSkillChart = new Chart(ctx, {
@@ -330,7 +339,7 @@
 
             const observerOptions = {
                 root: null,
-                rootMargin: '-30% 0px -60% 0px', // Menentukan garis batas aktifnya section
+                rootMargin: '-30% 0px -60% 0px',
                 threshold: 0
             };
 
