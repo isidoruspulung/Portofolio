@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Isidorus Pulung — Portofolio Mekatronika</title>
-
+    <script src="assets/js/cdn.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/myStyle.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -68,119 +70,119 @@
     }
     ?>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var ctx = document.getElementById('mechatronicsSkillChart').getContext('2d');
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var ctx = document.getElementById('mechatronicsSkillChart').getContext('2d');
 
-        var mechatronicsSkillChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: [],
-                datasets: [{
-                    label: 'Tingkat Penguasaan (%)',
-                    data: [],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: { beginAtZero: true, max: 100 }
+            var mechatronicsSkillChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Tingkat Penguasaan (%)',
+                        data: [],
+                        borderWidth: 1
+                    }]
                 },
-                responsive: true,
-                plugins: { legend: { display: false } }
-            }
-        });
-
-        function updateChartRealtime() {
-            fetch('backend/get-skills.php')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('File get-skills.php tidak ditemukan');
-                    }
-                    return response.json();
-                })
-                .then(resData => {
-                    mechatronicsSkillChart.data.labels = resData.labels;
-                    mechatronicsSkillChart.data.datasets[0].data = resData.data;
-                    mechatronicsSkillChart.data.datasets[0].backgroundColor = resData.bgColors;
-                    mechatronicsSkillChart.data.datasets[0].borderColor = resData.borderColors;
-                    
-                    mechatronicsSkillChart.update();
-                })
-                .catch(error => console.error('Gagal memuat data grafik:', error));
-        }
-
-        updateChartRealtime();
-        setInterval(updateChartRealtime, 3000);
-
-
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-        const sections = document.querySelectorAll('section[id]');
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '-20% 0px -70% 0px',
-            threshold: 0
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const currentId = entry.target.getAttribute('id');
-
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${currentId}`) {
-                            link.classList.add('active');
-                        }
-                    });
+                options: {
+                    scales: {
+                        y: { beginAtZero: true, max: 100 }
+                    },
+                    responsive: true,
+                    plugins: { legend: { display: false } }
                 }
             });
-        }, observerOptions);
 
-        sections.forEach(section => observer.observe(section));
+            function updateChartRealtime() {
+                fetch('backend/get-skills.php')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('File get-skills.php tidak ditemukan');
+                        }
+                        return response.json();
+                    })
+                    .then(resData => {
+                        mechatronicsSkillChart.data.labels = resData.labels;
+                        mechatronicsSkillChart.data.datasets[0].data = resData.data;
+                        mechatronicsSkillChart.data.datasets[0].backgroundColor = resData.bgColors;
+                        mechatronicsSkillChart.data.datasets[0].borderColor = resData.borderColors;
+
+                        mechatronicsSkillChart.update();
+                    })
+                    .catch(error => console.error('Gagal memuat data grafik:', error));
+            }
+
+            updateChartRealtime();
+            setInterval(updateChartRealtime, 3000);
 
 
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function (e) {
-                e.preventDefault();
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            const sections = document.querySelectorAll('section[id]');
 
-                let formData = new FormData(this);
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -70% 0px',
+                threshold: 0
+            };
 
-                fetch('backend/simpan-pesan.php', {
-                    method: 'POST',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: formData
-                })
-                .then(response => response.text())
-                .then(data => {
-                    const alertContainer = document.getElementById('alert-container');
-                    if (data.trim() === 'success') {
-                        alertContainer.innerHTML = `
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const currentId = entry.target.getAttribute('id');
+
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${currentId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+
+
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    let formData = new FormData(this);
+
+                    fetch('backend/simpan-pesan.php', {
+                        method: 'POST',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: formData
+                    })
+                        .then(response => response.text())
+                        .then(data => {
+                            const alertContainer = document.getElementById('alert-container');
+                            if (data.trim() === 'success') {
+                                alertContainer.innerHTML = `
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <strong>Terima Kasih!</strong> Pesan berhasil dikirim dan disimpan ke database.
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>`;
-                        contactForm.reset();
-                    } else {
-                        alertContainer.innerHTML = `
+                                contactForm.reset();
+                            } else {
+                                alertContainer.innerHTML = `
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <strong>Maaf!</strong> Terjadi kesalahan, pesan gagal dikirim.
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>`;
-                    }
+                            }
+                        });
                 });
-            });
-        }
-    });
-</script>
+            }
+        });
+    </script>
 </body>
 
 </html>
