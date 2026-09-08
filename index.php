@@ -12,12 +12,20 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-        section { scroll-margin-top: 85px; }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        section {
+            scroll-margin-top: 85px;
+        }
+
         .navbar-dark .navbar-nav .nav-link {
             transition: all 0.3s ease-in-out;
-            border-bottom: 2px solid transparent;
+            border-bottom: 20px solid transparent;
             position: relative;
         }
+
         .navbar-dark .navbar-nav .nav-link.active,
         .navbar-dark .navbar-nav .nav-link:hover {
             color: #ffc107 !important;
@@ -27,243 +35,13 @@
 </head>
 
 <body>
+    <?php include 'navbar.php'; ?>
+    <?php include 'home.php'; ?>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow" style="background-color: #0d1b2a; height: 85px;">
-        <div class="container">
-
-            <a class="navbar-brand d-flex align-items-center font-weight-bold" href="#home">
-                <img src="assets/img/iplogo.png" width="45" height="45"
-                    class="rounded-circle mr-2 border border-light bg-white" alt="Logo">
-                <h4>Isidorus Pulung</h4>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto font-weight-bold">
-                    <li class="nav-item"><a class="nav-link px-3 active" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="#about">About & Skills</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <section id="home" class="hero-section d-flex align-items-center text-center">
-        <div class="container py-5 mt-5">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-lg-8">
-                    <div class="mb-4">
-                        <img src="assets/img/tmk.png" width="150" height="150"
-                            class="rounded-circle shadow-lg border border-white bg-white p-1" alt="Foto Profil">
-                    </div>
-                    <h1 class="display-4 font-weight-bold mb-3">Hello, I'm Isidorus Pulung</h1>
-                    <p class="lead text-light mb-4 opacity-8">
-                        I am an active student at Polytechnic ATMI Surakarta in Mechatronics Engineering.
-                        With a strong background and interest in the field of mechatronic since I was in Vocational
-                        School.
-                    </p>
-                    <div class="d-flex justify-content-center">
-                        <a href="#services"
-                            class="btn btn-warning btn-lg px-4 mr-3 font-weight-bold shadow-sm">Explore</a>
-                        <a href="#contact" class="btn btn-outline-light btn-lg px-4 font-weight-bold">Contact Me</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="py-5" style="background-color: #f8f9fa; min-height: 90vh;">
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h2 class="font-weight-bold text-dark section-title">Services</h2>
-                <p class="text-muted">Solution in the field of mechatronics.</p>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card card-custom h-100 shadow-sm bg-white p-4 border-top border-warning border-4">
-                        <div class="card-body">
-                            <h4 class="font-weight-bold text-dark mb-3">Automation</h4>
-                            <p class="text-muted">Developing and programming smart control systems, microcontrollers,
-                                and automated processes to streamline operations and enhance system efficiency.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card card-custom h-100 shadow-sm bg-white p-4 border-top border-primary border-4">
-                        <div class="card-body">
-                            <h4 class="font-weight-bold text-dark mb-3">Circuit Design</h4>
-                            <p class="text-muted">Designing schematics, creating custom PCB layouts, and troubleshooting
-                                electronic circuits for reliable hardware performance and integration.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card card-custom h-100 shadow-sm bg-white p-4 border-top border-success border-4">
-                        <div class="card-body">
-                            <h4 class="font-weight-bold text-dark mb-3">Energy Audit</h4>
-                            <p class="text-muted">Evaluating power consumption patterns and conducting comprehensive
-                                energy assessments, including the planning and design of efficient solar systems.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-5" style="background-color: #ffffff; min-height: 90vh;">
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h2 class="font-weight-bold text-dark section-title">Project Gallery</h2>
-                <p class="text-muted">Some of My Mechatronics Projects.</p>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm border-0 h-100 bg-light">
-                        <img src="assets/img/IMG_1221.png" class="card-img-top" alt="Project 1" style="height: 200px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="font-weight-bold text-dark mb-2">IoT System</h5>
-                            <p class="text-muted small mb-3">Development of IoT system based on esp8266 for chili environment monitoring using cloud technology.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm border-0 h-100 bg-light">
-                        <img src="assets/img/pcb.png" class="card-img-top" alt="Project 2" style="height: 200px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="font-weight-bold text-dark mb-2">Custom PCB</h5>
-                            <p class="text-muted small mb-3">Schematic Planning, PCB Layout, and Power Circuit Simulation using Proteus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm border-0 h-100 bg-light">
-                        <img src="assets/img/IMG_2435.png" class="card-img-top" alt="Project 3" style="height: 200px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="font-weight-bold text-dark mb-2">3D Printing</h5>
-                            <p class="text-muted small mb-3">Development of 3D mechanical design with SolidWorks and 3D Printing Technology.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm border-0 h-100 bg-light">
-                        <img src="assets/img/plc.png" class="card-img-top" alt="Project 4" style="height: 200px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="font-weight-bold text-dark mb-2">PLC Automation</h5>
-                            <p class="text-muted small mb-3">Programming of an automated conveyor take the container using PLC and ladder diagram.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Proyek 5 (TAMBAHAN BARU) -->
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm border-0 h-100 bg-light">
-                        <img src="assets/img/bird.png" class="card-img-top" alt="Project 5" style="height: 200px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="font-weight-bold text-dark mb-2">AI</h5>
-                            <p class="text-muted small mb-3">Development (Birdbuster) Camera and laser based rice field bird repellent system.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm border-0 h-100 bg-light">
-                        <img src="assets/img/IMG_1988.png" class="card-img-top" alt="Project 5" style="height: 200px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="font-weight-bold text-dark mb-2">Design layout and wiring panel</h5>
-                            <p class="text-muted small mb-3">Panel Layout and Wiring Design for Electrical Systems.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="py-5" style="background-color: #f8f9fa; min-height: 90vh;">
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h2 class="font-weight-bold text-dark section-title">About Me & Skills</h2>
-            </div>
-
-            <div class="row justify-content-center align-items-center mb-5">
-                <div class="col-md-4 text-center mb-4 mb-md-0">
-                    <img src="assets/img/unnamed.png" alt="Isidorus Pulung"
-                        class="img-fluid rounded-circle shadow-lg border border-primary p-2"
-                        style="width: 220px; height: 220px; object-fit: cover;">
-                </div>
-                <div class="col-lg-8">
-                    <p class="lead text-secondary" style="line-height: 1.8;">
-                        As a Mechatronics Engineering student at Polytechnic ATMI Surakarta, I specialize in combining mechanical engineering, electronics, and programming to build smart, automated systems. Whether it's designing precise control circuits, programming microcontrollers, or developing mechanical solutions, I strive to create efficient technologies that solve complex industrial problems.
-                    </p>
-                </div>
-            </div>
-
-            <div class="row mt-4 align-items-center">
-                <div class="col-lg-5 mb-4 mb-lg-0">
-                    <div class="p-3 bg-white rounded shadow-sm mb-3 border-left border-primary border-4">
-                        <h6 class="font-weight-bold text-primary mb-1">Mechanical</h6>
-                        <p class="text-muted small mb-0">SolidWorks, CAD, 3D Printing.</p>
-                    </div>
-                    <div class="p-3 bg-white rounded shadow-sm mb-3 border-left border-success border-4">
-                        <h6 class="font-weight-bold text-success mb-1">Electronics & Electrical</h6>
-                        <p class="text-muted small mb-0">PCB Layout, Soldering, Circuit Troubleshooting, Proteus, Wiring Diagrams, Electrical Wiring.</p>
-                    </div>
-                    <div class="p-3 bg-white rounded shadow-sm border-left border-warning border-4">
-                        <h6 class="font-weight-bold text-warning mb-1">Programming</h6>
-                        <p class="text-muted small mb-0">C#, C++, Python, Arduino IDE, PLC.</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-7">
-                    <div class="card shadow-sm border-0 p-3 bg-white">
-                        <canvas id="mechatronicsSkillChart" width="400" height="220"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-5" style="background-color: #f1f5f9; min-height: 85vh;">
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h2 class="font-weight-bold text-dark section-title">Contact Me</h2>
-                <p class="text-muted">Send a message for collaboration!.</p>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="card shadow border-0 p-4 p-md-5 bg-white rounded-lg">
-                        <form action="backend/simpan-pesan.php" method="POST">
-                            <div class="form-group">
-                                <label for="nama" class="font-weight-bold text-dark">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="nama" name="nama"
-                                    placeholder="Masukkan nama Anda" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="font-weight-bold text-dark">Alamat Email</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="nama@email.com" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="pesan" class="font-weight-bold text-dark">Pesan / Kolaborasi</label>
-                                <textarea class="form-control" id="pesan" name="pesan" rows="4"
-                                    placeholder="Tuliskan pesan atau penawaran proyek..." required></textarea>
-                            </div>
-                            <div class="text-center mt-4">
-                                <button type="submit"
-                                    class="btn btn-primary btn-lg px-5 font-weight-bold shadow-sm">Kirim Pesan</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php include 'services.php'; ?>
+    <?php include 'project.php'; ?>
+    <?php include 'about.php'; ?>
+    <?php include 'contact.php'; ?>
 
     <footer class="py-4 text-center text-white" style="background-color: #080f17;">
         <div class="container">
@@ -272,18 +50,17 @@
         </div>
     </footer>
 
-    <!-- Dependency JS dipanggil dengan urutan yang benar -->
     <script src="assets/js/jquery-3.5.1.slim.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-<?php
-    // POIN 2: Persiapan data array dari database ke dalam format JS untuk Chart.js (Dinamis)
+    <?php
+
     $querySkills = mysqli_query($conn, "SELECT * FROM skills");
     $labels = [];
     $data_percentage = [];
     $bg_colors = [];
     $border_colors = [];
 
-    while($row = mysqli_fetch_assoc($querySkills)) {
+    while ($row = mysqli_fetch_assoc($querySkills)) {
         $labels[] = $row['skill_name'];
         $data_percentage[] = $row['percentage'];
         $bg_colors[] = $row['bg_color'];
@@ -292,81 +69,118 @@
     ?>
 
 <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // 1. Mencegah URL menumpuk & mengatur posisi saat refresh setelah kirim pesan
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('status')) {
-                const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.hash;
-                window.history.replaceState(null, null, cleanUrl);
-            }
+    document.addEventListener("DOMContentLoaded", function() {
+        var ctx = document.getElementById('mechatronicsSkillChart').getContext('2d');
 
-            // 2. Smooth Scroll khusus saat menu diklik (Menggantikan CSS scroll-behavior)
-            document.querySelectorAll('.navbar-nav a').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    if (this.hash !== "") {
-                        e.preventDefault();
-                        const targetId = this.hash;
-                        const targetElement = document.querySelector(targetId);
-
-                        if (targetElement) {
-                            window.scrollTo({
-                                top: targetElement.offsetTop - 85, // Menyesuaikan tinggi navbar
-                                behavior: 'smooth'
-                            });
-                            // Memperbarui URL tanpa memicu reload
-                            window.history.pushState(null, null, targetId);
-                        }
-                    }
-                });
-            });
-
-            // 3. Inisialisasi Chart.js
-            var chartLabels = <?= json_encode($labels); ?>;
-            var chartData = <?= json_encode($data_percentage); ?>;
-            var chartBgColors = <?= json_encode($bg_colors); ?>;
-            var chartBorderColors = <?= json_encode($border_colors); ?>;
-
-            var ctx = document.getElementById('mechatronicsSkillChart').getContext('2d');
-            var mechatronicsSkillChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: chartLabels,
-                    datasets: [{
-                        label: 'Tingkat Penguasaan (%)',
-                        data: chartData,
-                        backgroundColor: chartBgColors,
-                        borderColor: chartBorderColors,
-                        borderWidth: 1
-                    }]
+        var mechatronicsSkillChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Tingkat Penguasaan (%)',
+                    data: [],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true, max: 100 }
                 },
-                options: {
-                    scales: { y: { beginAtZero: true, max: 100 } },
-                    responsive: true,
-                    plugins: { legend: { display: false } }
+                responsive: true,
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        function updateChartRealtime() {
+            fetch('backend/get-skills.php')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('File get-skills.php tidak ditemukan');
+                    }
+                    return response.json();
+                })
+                .then(resData => {
+                    mechatronicsSkillChart.data.labels = resData.labels;
+                    mechatronicsSkillChart.data.datasets[0].data = resData.data;
+                    mechatronicsSkillChart.data.datasets[0].backgroundColor = resData.bgColors;
+                    mechatronicsSkillChart.data.datasets[0].borderColor = resData.borderColors;
+                    
+                    mechatronicsSkillChart.update();
+                })
+                .catch(error => console.error('Gagal memuat data grafik:', error));
+        }
+
+        updateChartRealtime();
+        setInterval(updateChartRealtime, 3000);
+
+
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const currentId = entry.target.getAttribute('id');
+
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${currentId}`) {
+                            link.classList.add('active');
+                        }
+                    });
                 }
             });
+        }, observerOptions);
 
-            // 4. Auto Active Navbar berdasarkan Scroll (Intersection Observer)
-            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-            const sections = document.querySelectorAll('section[id]');
-            const observerOptions = { root: null, rootMargin: '-30% 0px -60% 0px', threshold: 0 };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const currentId = entry.target.getAttribute('id');
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${currentId}`) {
-                                link.classList.add('active');
-                            }
-                        });
+        sections.forEach(section => observer.observe(section));
+
+
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                let formData = new FormData(this);
+
+                fetch('backend/simpan-pesan.php', {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    const alertContainer = document.getElementById('alert-container');
+                    if (data.trim() === 'success') {
+                        alertContainer.innerHTML = `
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Terima Kasih!</strong> Pesan berhasil dikirim dan disimpan ke database.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>`;
+                        contactForm.reset();
+                    } else {
+                        alertContainer.innerHTML = `
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Maaf!</strong> Terjadi kesalahan, pesan gagal dikirim.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>`;
                     }
                 });
-            }, observerOptions);
-            
-            sections.forEach(section => observer.observe(section));
-        });
-    </script>
+            });
+        }
+    });
+</script>
 </body>
+
 </html>
