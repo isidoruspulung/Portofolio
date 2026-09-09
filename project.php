@@ -12,8 +12,10 @@
             while ($project = mysqli_fetch_assoc($queryProjects)) {
             ?>
             <div class="col-md-4 mb-4">
-                <div class="card shadow-sm border-0 h-100 bg-light">
-                    <img src="<?= $project['image']; ?>" class="card-img-top" alt="<?= $project['judul']; ?>" style="height: 200px; object-fit: cover;">
+                <div class="card shadow-sm border-0 h-100 bg-light project-card">
+                    <div style="overflow: hidden;">
+                        <img src="<?= $project['image']; ?>" class="card-img-top" alt="<?= $project['judul']; ?>" style="height: 200px; object-fit: cover;">
+                    </div>
                     <div class="card-body d-flex flex-column">
                         <h5 class="font-weight-bold text-dark mb-2"><?= $project['judul']; ?></h5>
                         <p class="text-muted small mb-3"><?= $project['keterangan']; ?></p>

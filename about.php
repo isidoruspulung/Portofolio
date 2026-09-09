@@ -19,15 +19,17 @@
 
         <div class="row mt-4 align-items-center">
             <div class="col-lg-5 mb-4 mb-lg-0">
-                <div class="p-3 bg-white rounded shadow-sm mb-3 border-left border-primary border-4">
+                <div class="p-3 bg-white rounded shadow-sm mb-3 border-left border-primary border-4 skill-card">
                     <h6 class="font-weight-bold text-primary mb-1">Mechanical</h6>
                     <p class="text-muted small mb-0">SolidWorks, CAD, 3D Printing.</p>
                 </div>
-                <div class="p-3 bg-white rounded shadow-sm mb-3 border-left border-success border-4">
+                
+                <div class="p-3 bg-white rounded shadow-sm mb-3 border-left border-success border-4 skill-card">
                     <h6 class="font-weight-bold text-success mb-1">Electronics & Electrical</h6>
                     <p class="text-muted small mb-0">PCB Layout, Soldering, Circuit Troubleshooting, Proteus, Wiring Diagrams, Electrical Wiring.</p>
                 </div>
-                <div class="p-3 bg-white rounded shadow-sm border-left border-warning border-4">
+                
+                <div class="p-3 bg-white rounded shadow-sm border-left border-warning border-4 skill-card">
                     <h6 class="font-weight-bold text-warning mb-1">Programming</h6>
                     <p class="text-muted small mb-0">C#, C++, Python, Arduino IDE, PLC.</p>
                 </div>
@@ -41,4 +43,3 @@
         </div>
     </div>
 </section>
-    

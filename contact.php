@@ -2,7 +2,7 @@
         <div class="container py-5">
             <div class="text-center mb-5">
                 <h2 class="font-weight-bold text-dark section-title">Contact Me</h2>
-                <p class="text-muted">Send a message for collaboration!.</p>
+                <p class="text-muted">If you have any questions or project offers, feel free to reach out!</p>
             </div>
 
             <div class="row justify-content-center">
@@ -23,7 +23,7 @@
                                     placeholder="nama@email.com" required>
                             </div>
                             <div class="form-group">
-                                <label for="pesan" class="font-weight-bold text-dark">Pesan / Kolaborasi</label>
+                                <label for="pesan" class="font-weight-bold text-dark">Pesan</label>
                                 <textarea class="form-control" id="pesan" name="pesan" rows="4"
                                     placeholder="Tuliskan pesan atau penawaran proyek..." required></textarea>
                             </div>
